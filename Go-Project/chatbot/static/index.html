@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Go Chatbot</title>
+</head>
+<body>
+  <h1>Chat with GoBot</h1>
+  <input id="input" type="text" placeholder="Say something..." />
+  <button onclick="sendMessage()">Send</button>
+  <div id="response"></div>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("input").value;
+      const res = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
+      });
+      const data = await res.json();
+      document.getElementById("response").innerText = data.message;
+    }
+  </script>
+</body>
+</html>
