@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Hand Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🃏 Poker Hand Analyzer</h1>
+        
+        <div class="main-content">
+            <!-- Video Section -->
+            <div class="video-section">
+                <h2>Hand Detection</h2>
+                <div class="video-container">
+                    <video id="video" autoplay playsinline></video>
+                    <canvas id="canvas"></canvas>
+                </div>
+                <div class="controls">
+                    <button id="startCamera">Start Camera</button>
+                    <button id="analyzeHand">Analyze Hand</button>
+                </div>
+                
+                <!-- Card Input Section -->
+                <div class="card-input-section" id="cardInputSection" style="display: none;">
+                    <h3>Enter Your Cards</h3>
+                    <div class="card-selectors">
+                        <div class="card-selector">
+                            <label>Card 1:</label>
+                            <select id="card1Rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="10">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="card1Suit">
+                                <option value="">Suit</option>
+                                <option value="hearts">♥ Hearts</option>
+                                <option value="diamonds">♦ Diamonds</option>
+                                <option value="clubs">♣ Clubs</option>
+                                <option value="spades">♠ Spades</option>
+                            </select>
+                        </div>
+                        <div class="card-selector">
+                            <label>Card 2:</label>
+                            <select id="card2Rank">
+                                <option value="">Rank</option>
+                                <option value="A">A</option>
+                                <option value="K">K</option>
+                                <option value="Q">Q</option>
+                                <option value="J">J</option>
+                                <option value="10">10</option>
+                                <option value="9">9</option>
+                                <option value="8">8</option>
+                                <option value="7">7</option>
+                                <option value="6">6</option>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                            <select id="card2Suit">
+                                <option value="">Suit</option>
+                                <option value="hearts">♥ Hearts</option>
+                                <option value="diamonds">♦ Diamonds</option>
+                                <option value="clubs">♣ Clubs</option>
+                                <option value="spades">♠ Spades</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="submitCards">Submit Cards</button>
+                </div>
+                
+                <div class="results">
+                    <h3>Results</h3>
+                    <p id="handDetected">Hand Detected: <span>No</span></p>
+                    <p id="winRate">Win Rate: <span>--</span></p>
+                </div>
+            </div>
+
+            <!-- Chatbot Section -->
+            <div class="chatbot-section">
+                <h2>AI Poker Coach</h2>
+                <div class="chat-container" id="chatContainer">
+                    <div class="message bot-message">
+                        <strong>AI Coach:</strong> Hi! I can help you analyze your poker hands. What would you like to know?
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Ask me about your hand...">
+                    <button id="sendChat">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
